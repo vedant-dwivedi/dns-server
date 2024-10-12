@@ -61,12 +61,8 @@ udpSocket.on("message", (buf, rinfo) => {
     resolverSocket.on("message", (response) => {
         console.log("Received response from resolver");
 
-        // Log the raw response for debugging
-        console.log("Raw response:", response);
-
-        // Check the response structure
+        // Get the number of answers from the response
         const answerCount = response.readUInt16BE(6);
-        console.log("Answer count from resolver response:", answerCount);
 
         // Create a new header for the response
         const responseHeader = createDNSHeader(response, realID, answerCount);

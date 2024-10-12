@@ -1,11 +1,11 @@
 {
-    "name": "build-your-own-dns-server",
+    "name": "@codecrafters/build-your-own-dns-server",
     "version": "1.0.0",
     "lockfileVersion": 3,
     "requires": true,
     "packages": {
         "": {
-            "name": "build-your-own-dns-server",
+            "name": "@codecrafters/build-your-own-dns-server",
             "version": "1.0.0",
             "license": "MIT"
         }

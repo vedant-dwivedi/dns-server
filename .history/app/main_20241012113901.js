@@ -1,13 +1,13 @@
 const dgram = require("dgram");
 
 // Create DNS Header
-function createDNSHeader(buff, realID, answerCount) {
+function createDNSHeader(buff, realID) {
     const header = Buffer.alloc(12);
     header.writeUInt16BE(realID, 0);
     const flags = 0x8180; // QR=1, AA=0, TC=0, RD=1, RA=1, RCODE=0
     header.writeUInt16BE(flags, 2);
     header.writeUInt16BE(1, 4); // QDCOUNT
-    header.writeUInt16BE(answerCount, 6); // ANCOUNT
+    header.writeUInt16BE(0, 6); // ANCOUNT
     header.writeUInt16BE(0, 8); // NSCOUNT
     header.writeUInt16BE(0, 10); // ARCOUNT
     return header;
@@ -61,15 +61,8 @@ udpSocket.on("message", (buf, rinfo) => {
     resolverSocket.on("message", (response) => {
         console.log("Received response from resolver");
 
-        // Log the raw response for debugging
-        console.log("Raw response:", response);
-
-        // Check the response structure
-        const answerCount = response.readUInt16BE(6);
-        console.log("Answer count from resolver response:", answerCount);
-
         // Create a new header for the response
-        const responseHeader = createDNSHeader(response, realID, answerCount);
+        const responseHeader = createDNSHeader(response, realID);
 
         // Send the final response back to the client
         const finalResponse = Buffer.concat([responseHeader, response.slice(12)]);

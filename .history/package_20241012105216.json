@@ -1,7 +1,7 @@
 {
-    "name": "build-your-own-dns-server",
+    "name": "@codecrafters/build-your-own-dns-server",
     "version": "1.0.0",
-    "description": "Build your own DNS-Server",
+    "description": "Build your own DNS-Server challenge, from CodeCrafters",
     "main": "main.js",
     "scripts": {
         "dev": "node app/main.js"
@@ -9,7 +9,7 @@
     "keywords": [
         "build-your-own-x"
     ],
-    "author": "Vedant Dwivedi",
+    "author": "",
     "license": "MIT",
     "dependencies": {}
 }
