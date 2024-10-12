@@ -21,8 +21,7 @@ udpSocket.bind(2053, "127.0.0.1");
 
 udpSocket.on("message", (buf, rinfo) => {
   try {
-    // const response = Buffer.from("");
-    const response = createDNSHeader(buf);
+    const response = Buffer.from("");
     udpSocket.send(response, rinfo.port, rinfo.address);
   } catch (e) {
     console.log(`Error receiving data: ${e}`);
