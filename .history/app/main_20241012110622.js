@@ -30,7 +30,7 @@ udpSocket.on("message", (buf, rinfo) => {
 				ARCOUNT: 0
 			}
 		);
-		// udpSocket.send(packet.getResponse(), rinfo.port, rinfo.address);
+		udpSocket.send(packet.getResponse(), rinfo.port, rinfo.address);
 		const response = packet.addQuestion().getResponse();
 		udpSocket.send(response, rinfo.port, rinfo.address);
 	} catch (e) {

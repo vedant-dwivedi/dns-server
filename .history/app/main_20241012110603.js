@@ -8,9 +8,9 @@ udpSocket.bind(2053, "127.0.0.1");
 udpSocket.on("message", (buf, rinfo) => {
 	try {
 		console.log('message');
-		// const response = Buffer.from(buf);
-		// console.log(response);
-		// console.log(response.toString());
+		const response = Buffer.from(buf);
+		console.log(response);
+		console.log(response.toString());
 		console.log(rinfo.port, rinfo.address);
 		const packet = new Packet(
 			{
@@ -23,14 +23,14 @@ udpSocket.on("message", (buf, rinfo) => {
 				RA: 0,
 				Z: 0,
 				RCODE: 0,
-				// QDCOUNT: 0,
+				QDCOUNT: 0,
 				QDCOUNT: 1,
 				ANCOUNT: 0,
 				NSCOUNT: 0,
 				ARCOUNT: 0
 			}
 		);
-		// udpSocket.send(packet.getResponse(), rinfo.port, rinfo.address);
+		udpSocket.send(packet.getResponse(), rinfo.port, rinfo.address);
 		const response = packet.addQuestion().getResponse();
 		udpSocket.send(response, rinfo.port, rinfo.address);
 	} catch (e) {
